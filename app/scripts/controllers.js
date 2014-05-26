@@ -2,7 +2,6 @@
 angular.module('IonicWeatherApp.controllers', [])
 
 .controller('DashCtrl', function($scope) {
-  $scope.weatherInfo = '';
   $scope.add = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
     $.ajax({
@@ -12,7 +11,12 @@ angular.module('IonicWeatherApp.controllers', [])
         success: function (data) {
           console.log(data.main.temp);
           $scope.$apply(function() { //necessary to $apply the changes
-            $scope.weatherInfo = data.main.temp;
+            $scope.cityInfo = "Weather Info For " + cityName + ', ' + stateName + ":"
+            $scope.temp = '' || "Temp: " + data.main.temp + " °F";
+            $scope.highTemp = '' || "Hi: " + data.main.temp_max + " °F";
+            $scope.lowTemp = '' || "Lo: " + data.main.temp_min + " °F";
+            $scope.pressure = '' || "Pressure: " + data.main.pressure + " hPa";
+            $scope.humidity = '' || "Humidity: " + data.main.humidity + " %";
           })
         },
         error: function(xhr, status) {
