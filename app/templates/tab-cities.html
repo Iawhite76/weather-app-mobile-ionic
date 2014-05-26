@@ -1,5 +1,11 @@
 <ion-view title="Cities">
   <ion-content class="has-header">
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios7-search placeholder-icon"></i>
+        <input class="search" type="search" placeholder="Search" ng-model="searchCity">
+      </label>
+    </div>
     <ion-list>
         <ion-item class="city-list" ng-repeat="city in cities | orderBy:'name' | filter:searchCity" type="item-text-wrap" href="#/city/{{city.id}}">
           {{city.name + ", " + city.state}}
