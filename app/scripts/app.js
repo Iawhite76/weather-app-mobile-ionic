@@ -41,31 +41,12 @@ angular.module('IonicWeatherApp', ['ionic', 'IonicWeatherApp.controllers', 'Ioni
       }
     })
 
-    .state('tab.friends', {
-      url: '/friends',
+    .state('tab.cities', {
+      url: '/cities',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-cities': {
+          templateUrl: 'templates/tab-cities.html',
+          controller: 'CityCtrl'
         }
       }
     });

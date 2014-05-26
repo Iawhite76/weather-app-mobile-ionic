@@ -1,27 +1,29 @@
 'use strict';
 angular.module('IonicWeatherApp.services', [])
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
+  // A simple service that returns some data
+.factory('Cities', function() {
+  var cities = [
+    { id: 0, name: 'austin', state: 'tx'},
+    { id: 1, name: 'chicago', state: 'il'},
+    { id: 2, name: 'san antonio', state: 'tx'},
+    { id: 3, name: 'dallas', state: 'tx'},
+    { id: 4, name: 'pheonix', state: 'az'},
+    { id: 5, name: 'boulder', state: 'co'},
+    { id: 6, name: 'irvine', state: 'ca'},
+    { id: 7, name: 'new York', state: 'ny'},
+    { id: 8, name: 'san diego', state: 'ca'},
+    { id: 9, name: 'deluth', state: 'mn'},
+    { id: 10, name: 'new orleans', state: 'la'},
+    { id: 11, name: 'houston', state: 'tx'}
   ];
 
   return {
     all: function() {
-      return friends;
+      return cities;
     },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+    get: function(cityId) {
+      return cities[cityId];
     }
   };
 });
