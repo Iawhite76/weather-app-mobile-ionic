@@ -2,6 +2,7 @@
 angular.module('IonicWeatherApp.controllers', [])
 
 .controller('DashCtrl', function($scope) {
+  $scope.weatherInfo = '';
   $scope.add = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
     $.ajax({
@@ -10,6 +11,9 @@ angular.module('IonicWeatherApp.controllers', [])
         dataType: "json",
         success: function (data) {
           console.log(data.main.temp);
+          $scope.$apply(function() {
+            $scope.weatherInfo = data.main.temp;
+          })
         },
         error: function(xhr, status) {
           console.log("Error: " + status);
