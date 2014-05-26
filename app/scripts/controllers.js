@@ -2,6 +2,9 @@
 angular.module('IonicWeatherApp.controllers', [])
 
 .controller('DashCtrl', function($scope) {
+  $scope.add = function(cityName, stateName) {
+    console.log(cityName + ', ' + stateName);
+  };
 })
 
 .controller('CityCtrl', function($scope, Cities) {

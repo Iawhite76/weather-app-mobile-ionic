@@ -1,16 +1,18 @@
 <ion-view title="The Weather App: Mobile">
   <ion-content class="has-header padding">
     <div class="list list-inset">
+      <form ng-submit="add(cityName, stateName)">
         <label class="item item-input">
-          <input type="text" placeholder="City Name">
+          <input type="text" placeholder="City Name" ng-model="cityName">
         </label>
         <label class="item item-input">
-          <input type="text" maxlength="2" placeholder="State e.g. Tx">
+          <input type="text" maxlength="2" placeholder="State e.g. Tx" ng-model="stateName">
         </label>
 
         <button class="button button-block button-positive">
           Get Weather Info
         </button>
+      </form>
       </div>
   </ion-content>
 </ion-view>
