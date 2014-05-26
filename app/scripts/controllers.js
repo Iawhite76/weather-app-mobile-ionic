@@ -11,7 +11,7 @@ angular.module('IonicWeatherApp.controllers', [])
         dataType: "json",
         success: function (data) {
           console.log(data.main.temp);
-          $scope.$apply(function() {
+          $scope.$apply(function() { //necessary to $apply the changes
             $scope.weatherInfo = data.main.temp;
           })
         },
