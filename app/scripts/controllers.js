@@ -86,6 +86,10 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
 .controller('CityCtrl', function($scope, Cities) {
   $scope.cities = Cities.all();
+})
+
+.controller('CityDetailCtrl', function($scope, $stateParams, Cities) {
+  $scope.city = Cities.get($stateParams.cityId);
 });
 
 // .controller('FriendsCtrl', function($scope, Friends) {

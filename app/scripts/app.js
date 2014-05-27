@@ -49,6 +49,15 @@ angular.module('IonicWeatherApp', ['ionic', 'IonicWeatherApp.controllers', 'Ioni
           controller: 'CityCtrl'
         }
       }
+    })
+    .state('tab.city-detail', {
+      url: '/city/:cityId',
+      views: {
+        'tab-cities': {
+          templateUrl: 'templates/city-detail.html',
+          controller: 'CityDetailCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
