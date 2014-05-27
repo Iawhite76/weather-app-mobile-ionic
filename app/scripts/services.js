@@ -32,6 +32,14 @@ angular.module('IonicWeatherApp.services', [])
     get: function(city) {
       console.log(cities[city['cityId']]);
       return cities[city['cityId']];
+    },
+    find: function(cityInfo, stateInfo, comment) {
+      var currentCityList = localStorageService.get('cities');
+      console.log(cityInfo);
+      console.log(stateInfo);
+      console.log(comment);
+      // console.log(currentCityList);
+      // for loop??
     }
   }
   // return {
