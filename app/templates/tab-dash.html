@@ -30,17 +30,17 @@
 
         <!-- Modal header bar -->
         <ion-header-bar class="bar-secondary">
-          <h1 class="title">New Comment for {{city}}</h1>
+          <h1 class="title">New Comment for {{city}}, {{state}}</h1>
           <button class="button button-clear button-positive" ng-click="closeModal()">Cancel</button>
         </ion-header-bar>
 
         <!-- Modal content area -->
         <ion-content>
 
-          <form ng-submit="createComment(citay)">
+          <form ng-submit="createComment(comment)">
             <div class="list">
               <label class="item item-input">
-                <input type="text" maxlength="50" placeholder="Enter comment (max 50 chars)" ng-model="citay.comment">
+                <input type="text" maxlength="50" placeholder="Enter comment (max 50 chars)" ng-model="comment.body">
               </label>
             </div>
             <div class="padding">

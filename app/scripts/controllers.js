@@ -11,13 +11,15 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     $scope.modal = modal;
   });
 
-  $scope.createComment = function(citay) {
+  $scope.createComment = function(comment) {
     // $scope.cityComments.push({
     //   comment: city.comment
     // });
-    console.log(citay.comment);
+    console.log(comment.body);
+    console.log(this.city);
+    console.log(this.state);
     $scope.modal.hide();
-    citay.comment = "";
+    comment.body = "";
   };
 
   $scope.openModal = function() {
