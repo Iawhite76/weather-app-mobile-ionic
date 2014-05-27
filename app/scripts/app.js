@@ -6,7 +6,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('IonicWeatherApp', ['ionic', 'IonicWeatherApp.controllers', 'IonicWeatherApp.services'])
+angular.module('IonicWeatherApp', ['ionic', 'IonicWeatherApp.controllers', 'IonicWeatherApp.services', 'LocalStorageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,8 +14,8 @@ angular.module('IonicWeatherApp', ['ionic', 'IonicWeatherApp.controllers', 'Ioni
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+  localStorageServiceProvider.setPrefix('ls');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.

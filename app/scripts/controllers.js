@@ -1,7 +1,7 @@
 'use strict';
 angular.module('IonicWeatherApp.controllers', ['ionic'])
 
-.controller('DashCtrl', function($scope, $ionicLoading, $ionicModal, Cities) {
+.controller('DashCtrl', function($scope, $ionicLoading, $ionicModal, Cities, localStorageService) {
   $scope.hide = true;
   $scope.cityComments = [];
   $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -85,12 +85,13 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
   }
 })
 
-.controller('CityCtrl', function($scope, Cities) {
+.controller('CityCtrl', function($scope, Cities, localStorageService) {
   $scope.cities = Cities.all();
 })
 
-.controller('CityDetailCtrl', function($scope, $stateParams, Cities) {
-  $scope.city = Cities.get($stateParams.cityId);
+.controller('CityDetailCtrl', function($scope, $stateParams, Cities, localStorageService) {
+  // console.log(Cities.get($stateParams));
+  $scope.city = Cities.get($stateParams);
 });
 
 // .controller('FriendsCtrl', function($scope, Friends) {
