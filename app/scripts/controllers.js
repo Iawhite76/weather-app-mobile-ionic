@@ -1,14 +1,23 @@
 'use strict';
-angular.module('IonicWeatherApp.controllers', [])
+angular.module('IonicWeatherApp.controllers', ['ionic'])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, $ionicLoading) {
+
   $scope.add = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
+    $ionicLoading.show({
+      content: 'Loading...',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
     $.ajax({
         url: "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + ", " + stateName + "&mode=json&units=imperial",
         type: "get",
         dataType: "json",
         success: function (data) {
+          $ionicLoading.hide();
           console.log(data.main.temp);
           $scope.$apply(function() { //necessary to $apply the changes
             $scope.cityInfo = "Weather Info For " + cityName + ', ' + stateName + ":"
