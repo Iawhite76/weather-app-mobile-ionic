@@ -39,7 +39,16 @@ angular.module('IonicWeatherApp.services', [])
       console.log(stateInfo);
       console.log(comment);
       // console.log(currentCityList);
-      // for loop??
+      for (var key in cities) {
+         var obj = cities[key];
+         for (var prop in obj) {
+            // important check that this is objects own property
+            // not from prototype prop inherited
+            if(obj.hasOwnProperty(prop)){
+              alert(prop + " = " + obj[prop]);
+            }
+         }
+      }
     }
   }
   // return {
