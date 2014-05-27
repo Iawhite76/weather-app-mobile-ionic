@@ -45,7 +45,20 @@ angular.module('IonicWeatherApp.services', [])
             // important check that this is objects own property
             // not from prototype prop inherited
             if(obj.hasOwnProperty(prop)){
-              alert(prop + " = " + obj[prop]);
+              // alert(prop + " = " + obj[prop]);
+              // console.log("prop: " + prop);
+              // console.log("obj[prop]: " + obj[prop]);
+              // console.log("key: " + key);
+              // console.log("obj: " + obj);
+              if(obj[prop] === (cityInfo + ', ' + stateInfo)) {
+                // console.log(cities[key]['comments'].push(comment));
+                  localStorageService.set(
+                    'cities',
+                    JSON.stringify(
+                      cities[key]['comments'].push(comment)
+                  ));
+                return localStorageService.get('cities');
+              }
             }
          }
       }
