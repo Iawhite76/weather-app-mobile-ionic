@@ -3,13 +3,13 @@
     <div class="list list-inset">
       <form ng-submit="add(cityName, stateName)">
         <label class="item item-input">
-          <input type="text" placeholder="City Name" ng-model="cityName" ng-click="clear()">
+          <input type="text" placeholder="City Name" ng-model="cityName">
         </label>
         <label class="item item-input">
-          <input type="text" maxlength="2" placeholder="State e.g. Tx" ng-model="stateName" ng-click="clear()">
+          <input type="text" maxlength="2" placeholder="State e.g. Tx" ng-model="stateName">
         </label>
 
-        <button class="button button-block button-positive">
+        <button class="button button-block button-positive" ng-click="clear()">
           Get Weather Info
         </button>
       </form>
