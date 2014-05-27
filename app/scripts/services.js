@@ -25,10 +25,12 @@ angular.module('IonicWeatherApp.services', [])
     get: function(cityId) {
       return cities[cityId];
     },
-    find: function(info, comment) {
+    find: function(cityInfo, stateInfo, comment) {
       for (var i = 0, l = cities.length -1; i < l; i++) {
-        if (cities[i]['name'] === info) {
-          cities[i]['comments'].push(comment);
+        if (cities[i]['name'] !== cityInfo) {
+          return cities.push({id: 12, name: cityInfo, state: stateInfo, comments: [comment]})
+        } else {
+          return cities[i]['comments'].push(comment);
         }
       }
     }
