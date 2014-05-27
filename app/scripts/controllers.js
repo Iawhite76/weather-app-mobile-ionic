@@ -24,6 +24,10 @@ angular.module('IonicWeatherApp.controllers', [])
         }
       });
   };
+
+  $scope.clear = function() {
+    $('input').val('');
+  }
 })
 
 .controller('CityCtrl', function($scope, Cities) {
