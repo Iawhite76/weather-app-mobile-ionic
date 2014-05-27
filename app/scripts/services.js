@@ -24,6 +24,13 @@ angular.module('IonicWeatherApp.services', [])
     },
     get: function(cityId) {
       return cities[cityId];
+    },
+    find: function(info, comment) {
+      for (var i = 0, l = cities.length -1; i < l; i++) {
+        if (cities[i]['name'] === info) {
+          cities[i]['comments'].push(comment);
+        }
+      }
     }
   };
 });

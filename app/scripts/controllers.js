@@ -1,7 +1,7 @@
 'use strict';
 angular.module('IonicWeatherApp.controllers', ['ionic'])
 
-.controller('DashCtrl', function($scope, $ionicLoading, $ionicModal) {
+.controller('DashCtrl', function($scope, $ionicLoading, $ionicModal, Cities) {
   $scope.hide = true;
   $scope.cityComments = [];
   $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -16,9 +16,10 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     //   comment: city.comment
     // });
     console.log(comment.body);
-    console.log(this.city);
-    console.log(this.state);
+    // console.log(this.city);
+    // console.log(this.state);
     $scope.modal.hide();
+    console.log(Cities.find(this.city, comment.body));
     comment.body = "";
   };
 
