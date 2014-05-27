@@ -2,10 +2,10 @@
   <ion-content class="has-header padding">
     <div class="list list-inset">
       <form ng-submit="add(cityName, stateName)">
-        <label class="item item-input">
+        <label class="main item item-input">
           <input type="text" placeholder="City Name" ng-model="cityName">
         </label>
-        <label class="item item-input">
+        <label class="main item item-input">
           <input type="text" maxlength="2" placeholder="State e.g. Tx" ng-model="stateName">
         </label>
 
@@ -21,18 +21,23 @@
         <h2>{{lowTemp}}</h2>
         <h2>{{pressure}}</h2>
         <h2>{{humidity}}</h2>
-        <button class="button button-block button-calm" ng-click="openModal()">
+        <button ng-hide="hide" class="button button-block button-calm" ng-click="openModal()">
           Leave Comment
         </button>
       </div>
       <script id="my-modal.html" type="text/ng-template">
         <div class="modal">
           <ion-header-bar>
-            <h1 class="title">My Modal title</h1>
+            <h1 class="title">Comment</h1>
             <button class="button button-calm" ng-click="closeModal()">Close</button>
           </ion-header-bar>
           <ion-content>
-            Hello!
+            <label class="item item-input">
+              <input type="text" maxlength="50" placeholder="Title (max 50 chars)" ng-model="cityName">
+            </label>
+            <label class="item item-input">
+              <input type="text" height="200" maxlength="100" placeholder="Comment (max 100 chars..)" ng-model="commentBody">
+            </label>
           </ion-content>
         </div>
       </script>

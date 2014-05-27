@@ -2,6 +2,8 @@
 angular.module('IonicWeatherApp.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope, $ionicLoading, $ionicModal) {
+  $scope.hide = true;
+
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -41,6 +43,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
         dataType: "json",
         success: function (data) {
           $ionicLoading.hide();
+          $scope.hide = false;
           console.log(data.main.temp);
           $scope.$apply(function() { //necessary to $apply the changes
             $scope.cityInfo = "Weather Info For " + cityName + ', ' + stateName + ":"
