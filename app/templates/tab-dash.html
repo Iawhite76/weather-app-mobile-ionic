@@ -21,6 +21,20 @@
         <h2>{{lowTemp}}</h2>
         <h2>{{pressure}}</h2>
         <h2>{{humidity}}</h2>
+        <button class="button button-block button-calm" ng-click="openModal()">
+          Leave Comment
+        </button>
       </div>
+      <script id="my-modal.html" type="text/ng-template">
+        <div class="modal">
+          <ion-header-bar>
+            <h1 class="title">My Modal title</h1>
+            <button class="button button-calm" ng-click="closeModal()">Close</button>
+          </ion-header-bar>
+          <ion-content>
+            Hello!
+          </ion-content>
+        </div>
+      </script>
   </ion-content>
 </ion-view>
