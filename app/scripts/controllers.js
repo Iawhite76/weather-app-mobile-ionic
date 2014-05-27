@@ -3,33 +3,49 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope, $ionicLoading, $ionicModal) {
   $scope.hide = true;
-
+  $scope.cityComments = [];
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.modal = modal;
   });
+
+  $scope.createComment = function(city) {
+    $scope.cityComments.push({
+      comment: city.comment
+    });
+    $scope.modal.hide();
+    city.comment = "";
+  };
+
   $scope.openModal = function() {
     $scope.modal.show();
   };
+
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
+
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+
   // Execute action on hide modal
   $scope.$on('modal.hide', function() {
     // Execute action
   });
+
   // Execute action on remove modal
   $scope.$on('modal.removed', function() {
     // Execute action
   });
+
   $scope.add = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
+    $scope.city = cityName;
+    $scope.state = stateName;
     $ionicLoading.show({
       content: 'Loading...',
       animation: 'fade-in',

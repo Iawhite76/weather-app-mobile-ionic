@@ -26,20 +26,33 @@
         </button>
       </div>
       <script id="my-modal.html" type="text/ng-template">
-        <div class="modal">
-          <ion-header-bar>
-            <h1 class="title">Comment</h1>
-            <button class="button button-calm" ng-click="closeModal()">Close</button>
-          </ion-header-bar>
-          <ion-content>
-            <label class="item item-input">
-              <input type="text" maxlength="50" placeholder="Title (max 50 chars)" ng-model="cityName">
-            </label>
-            <label class="item item-input">
-              <input type="text" height="200" maxlength="100" placeholder="Comment (max 100 chars..)" ng-model="commentBody">
-            </label>
-          </ion-content>
-        </div>
+      <div class="modal">
+
+        <!-- Modal header bar -->
+        <ion-header-bar class="bar-secondary">
+          <h1 class="title">New Comment for {{city}}</h1>
+          <button class="button button-clear button-positive" ng-click="closeModal()">Cancel</button>
+        </ion-header-bar>
+
+        <!-- Modal content area -->
+        <ion-content>
+
+          <form ng-submit="createComment(city)">
+            <div class="list">
+              <label class="item item-input">
+                <input type="text" placeholder="Enter comment (max 50 chars)" ng-model="city.comment">
+              </label>
+            </div>
+            <div class="padding">
+              <button type="submit" class="button button-block button-positive">Submit Comment</button>
+            </div>
+          </form>
+
+        </ion-content>
+
+      </div>
+
+
       </script>
   </ion-content>
 </ion-view>
