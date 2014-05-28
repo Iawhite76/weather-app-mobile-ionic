@@ -19,31 +19,30 @@ angular.module('IonicWeatherApp.services', [])
   //   { id: 11, name: 'houston', state: 'tx', comments: []}
   // ];
 
-  localStorage.setItem('cities', JSON.stringify({}));
   return {
     all: function() {
-      return JSON.parse(localStorage.getItem('cities'));
+      return JSON.parse(window.localStorage.getItem('cities'));
       // return localStorage = null;
     },
     get: function(city) {
       // return cities[cityId];
-      var cities = JSON.parse(localStorage.getItem('cities'));
+      var cities = JSON.parse(window.localStorage.getItem('cities'));
       return city.cityId;
       // console.log(JSON.stringify(cities[city.cityId]));
       // return JSON.stringify(cities[city.cityId]);
     },
     save: function(cityInfo, stateInfo, comment) {
-      var cities = JSON.parse(localStorage.getItem('cities'));
+      var cities = JSON.parse(window.localStorage.getItem('cities'));
       if (cities[cityInfo + ', ' + stateInfo] != undefined) {
         cities[cityInfo + ', ' + stateInfo].push(comment);
-        localStorage.setItem('cities', JSON.stringify(cities));
+        window.localStorage.setItem('cities', JSON.stringify(cities));
       } else {
         cities[cityInfo + ', ' + stateInfo] = [comment];
-        localStorage.setItem('cities', JSON.stringify(cities));
+        window.localStorage.setItem('cities', JSON.stringify(cities));
       }
     },
     getComments: function(city) {
-      var cities = JSON.parse(localStorage.getItem('cities'));
+      var cities = JSON.parse(window.localStorage.getItem('cities'));
       return cities[city.cityId];
     }
   };
