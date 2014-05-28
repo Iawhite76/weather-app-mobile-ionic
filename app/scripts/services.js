@@ -19,6 +19,7 @@ angular.module('IonicWeatherApp.services', [])
   //   { id: 11, name: 'houston', state: 'tx', comments: []}
   // ];
 
+  localStorage.setItem('cities', JSON.stringify({}));
   return {
     all: function() {
       return JSON.parse(localStorage.getItem('cities'));
@@ -26,13 +27,13 @@ angular.module('IonicWeatherApp.services', [])
     },
     get: function(city) {
       // return cities[cityId];
-      var cities = JSON.parse(localStorage.getItem('cities') || {});
+      var cities = JSON.parse(localStorage.getItem('cities'));
       return city.cityId;
       // console.log(JSON.stringify(cities[city.cityId]));
       // return JSON.stringify(cities[city.cityId]);
     },
     save: function(cityInfo, stateInfo, comment) {
-      var cities = JSON.parse(localStorage.getItem('cities') || {});
+      var cities = JSON.parse(localStorage.getItem('cities'));
       if (cities[cityInfo + ', ' + stateInfo] != undefined) {
         cities[cityInfo + ', ' + stateInfo].push(comment);
         localStorage.setItem('cities', JSON.stringify(cities));
@@ -42,7 +43,7 @@ angular.module('IonicWeatherApp.services', [])
       }
     },
     getComments: function(city) {
-      var cities = JSON.parse(localStorage.getItem('cities') || {});
+      var cities = JSON.parse(localStorage.getItem('cities'));
       return cities[city.cityId];
     }
   };
