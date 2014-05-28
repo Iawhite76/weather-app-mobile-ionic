@@ -12,12 +12,6 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
   });
 
   $scope.createComment = function(comment) {
-    // $scope.cityComments.push({
-    //   comment: city.comment
-    // });
-    console.log(comment.body);
-    // console.log(this.city);
-    // console.log(this.state);
     $scope.modal.hide();
     Cities.save(this.city, this.state, comment.body);
     comment.body = "";
@@ -93,14 +87,3 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
   $scope.city = Cities.get($stateParams);
   $scope.comments = Cities.getComments($stateParams);
 });
-
-// .controller('FriendsCtrl', function($scope, Friends) {
-//   $scope.friends = Friends.all();
-// })
-
-// .controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-//   $scope.friend = Friends.get($stateParams.friendId);
-// })
-
-// .controller('AccountCtrl', function($scope) {
-// });
