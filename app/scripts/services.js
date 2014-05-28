@@ -2,14 +2,8 @@
 angular.module('IonicWeatherApp.services', [])
 
   // A simple service that returns some data
-.factory('Cities', function(localStorageService) {
-  var cities = {
-    "0": {name: 'austin, tx', comments: ['comment']}
-  };
-
-  localStorageService.set('cities', JSON.stringify(cities));
-  var value = localStorageService.get('cities');
-  // console.log(value);
+.factory('Cities', function() {
+  // var cities = {};
   // var cities = [
   //   { id: 0, name: 'austin', state: 'tx', comments: ["Hi", "there"]},
   //   { id: 1, name: 'chicago', state: 'il', comments: []},
@@ -24,61 +18,26 @@ angular.module('IonicWeatherApp.services', [])
   //   { id: 10, name: 'new orleans', state: 'la', comments: []},
   //   { id: 11, name: 'houston', state: 'tx', comments: []}
   // ];
+
   return {
     all: function() {
-      // console.log(cities);
-      return cities;
+      return JSON.parse(localStorage.getItem('cities'));
+      // return localStorage = null;
     },
-    get: function(city) {
-      console.log(cities[city['cityId']]);
-      return cities[city['cityId']];
+    get: function(cityId) {
+      // return cities[cityId];
     },
-    find: function(cityInfo, stateInfo, comment) {
-      var currentCityList = localStorageService.get('cities');
-      console.log(cityInfo);
-      console.log(stateInfo);
-      console.log(comment);
-      // console.log(currentCityList);
-      for (var key in cities) {
-         var obj = cities[key];
-         for (var prop in obj) {
-            // important check that this is objects own property
-            // not from prototype prop inherited
-            if(obj.hasOwnProperty(prop)){
-              // alert(prop + " = " + obj[prop]);
-              // console.log("prop: " + prop);
-              // console.log("obj[prop]: " + obj[prop]);
-              // console.log("key: " + key);
-              // console.log("obj: " + obj);
-              if(obj[prop] === (cityInfo + ', ' + stateInfo)) {
-                // console.log(cities[key]['comments'].push(comment));
-                  localStorageService.set(
-                    'cities',
-                    JSON.stringify(
-                      cities[key]['comments'].push(comment)
-                  ));
-                return localStorageService.get('cities');
-              }
-            }
-         }
+    save: function(cityInfo, stateInfo, comment) {
+      var cities = JSON.parse(localStorage.getItem('cities') || {});
+      if (cities[cityInfo + ', ' + stateInfo] != undefined) {
+        cities[cityInfo + ', ' + stateInfo].push(comment);
+        localStorage.setItem('cities', JSON.stringify(cities));
+        console.log(JSON.parse(localStorage.getItem('cities')));
+      } else {
+        cities[cityInfo + ', ' + stateInfo] = [comment];
+        localStorage.setItem('cities', JSON.stringify(cities));
+        console.log(JSON.parse(localStorage.getItem('cities')));
       }
     }
-  }
-  // return {
-  //   all: function() {
-  //     return cities;
-  //   },
-  //   get: function(cityId) {
-  //     return cities[cityId];
-  //   },
-  //   find: function(cityInfo, stateInfo, comment) {
-  //     for (var i = 0, l = cities.length -1; i < l; i++) {
-  //       if (cities[i]['name'] !== cityInfo) {
-  //         return cities.push({id: 12, name: cityInfo, state: stateInfo, comments: [comment]})
-  //       } else {
-  //         return cities[i]['comments'].push(comment);
-  //       }
-  //     }
-  //   }
-  // };
+  };
 });

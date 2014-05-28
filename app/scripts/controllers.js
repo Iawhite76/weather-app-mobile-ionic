@@ -19,7 +19,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     // console.log(this.city);
     // console.log(this.state);
     $scope.modal.hide();
-    Cities.find(this.city, this.state, comment.body);
+    Cities.save(this.city, this.state, comment.body);
     comment.body = "";
   };
 
