@@ -7,8 +7,8 @@
       </label>
     </div>
     <ion-list>
-        <ion-item class="city-list" ng-repeat="(city, name) in cities | orderBy:'name' | filter:searchCity" type="item-text-wrap" href="#tab/city/{{city}}">
-          {{name.name}}<span class="badge badge-assertive">{{name.comments.length}}</span>
+        <ion-item class="city-list" ng-repeat="(cities, comments) in cities | orderBy:'name' | filter:searchCity" type="item-text-wrap" href="#tab/city/{{city}}">
+          {{cities}}<span class="badge badge-assertive">{{comments.length}}</span>
         </ion-item>
       </ion-list>
   </ion-content>
