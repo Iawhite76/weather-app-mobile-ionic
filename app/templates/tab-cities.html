@@ -3,11 +3,11 @@
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios7-search placeholder-icon"></i>
-        <input class="search" type="search" placeholder="Search" ng-model="searchCity">
+        <input class="search" type="search" placeholder="Search" ng-model="query">
       </label>
     </div>
     <ion-list>
-        <ion-item class="city-list" ng-repeat="city in citiesArray | orderBy:'name' | filter:searchCity" type="item-text-wrap" href="#tab/city/{{city}}">
+        <ion-item class="city-list" ng-repeat="city in citiesArray | orderBy:'name' | filter:query" type="item-text-wrap" href="#tab/city/{{city}}">
           {{city}}<span class="badge badge-assertive" ng-repeat="(city, comments) in cities">{{comments.length}}</span>
         </ion-item>
       </ion-list>
