@@ -24,19 +24,24 @@ angular.module('IonicWeatherApp.services', [])
       return JSON.parse(localStorage.getItem('cities'));
       // return localStorage = null;
     },
-    get: function(cityId) {
+    get: function(city) {
       // return cities[cityId];
+      console.log(city);
+      var cities = JSON.parse(localStorage.getItem('cities') || {});
+      return city.cityId;
+      // console.log(JSON.stringify(cities[city.cityId]));
+      // return JSON.stringify(cities[city.cityId]);
     },
     save: function(cityInfo, stateInfo, comment) {
       var cities = JSON.parse(localStorage.getItem('cities') || {});
       if (cities[cityInfo + ', ' + stateInfo] != undefined) {
         cities[cityInfo + ', ' + stateInfo].push(comment);
         localStorage.setItem('cities', JSON.stringify(cities));
-        console.log(JSON.parse(localStorage.getItem('cities')));
+        // console.log(JSON.parse(localStorage.getItem('cities')));
       } else {
         cities[cityInfo + ', ' + stateInfo] = [comment];
         localStorage.setItem('cities', JSON.stringify(cities));
-        console.log(JSON.parse(localStorage.getItem('cities')));
+        // console.log(JSON.parse(localStorage.getItem('cities')));
       }
     }
   };

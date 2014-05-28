@@ -4,10 +4,10 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view title="{{city.name}}">
+<ion-view title="{{city}}">
   <ion-content has-header="true" padding="true">
     <ion-list>
-      <ion-item class="icon ion-chatbubble-working padding" ng-repeat="comment in city.comments" item="item">
+      <ion-item class="icon ion-chatbubble-working padding" ng-repeat="comment in comments" item="item">
         {{comment}}
       </ion-item>
     </ion-list>

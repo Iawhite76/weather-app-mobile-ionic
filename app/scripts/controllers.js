@@ -90,7 +90,6 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 })
 
 .controller('CityDetailCtrl', function($scope, $stateParams, Cities, localStorageService) {
-  // console.log(Cities.get($stateParams));
   $scope.city = Cities.get($stateParams);
 });
 
