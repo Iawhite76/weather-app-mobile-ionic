@@ -12,7 +12,7 @@
       Note that you MUST use an array in order to filter or orderBy as these WILL NOT work for objects.
       -->
         <ion-item class="city-list" ng-repeat="city in citiesArray | orderBy:'name' | filter:searchCity" type="item-text-wrap" href="#tab/city/{{city}}">
-          {{city}}<span class="badge badge-assertive" ng-repeat="comments in cities">{{comments}}</span>
+          {{city}}<span class="badge badge-assertive" ng-repeat="(city, comments) in cities">{{comments.length}}</span>
         </ion-item>
       </ion-list>
   </ion-content>
