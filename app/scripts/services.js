@@ -16,18 +16,32 @@ angular.module('IonicWeatherApp.services', [])
       return city.cityId;
     },
     save: function(cityInfo, stateInfo, comment) {
-      var cities = JSON.parse(window.localStorage.getItem('cities'));
-      if (cities[cityInfo + ', ' + stateInfo] != undefined) {
-        cities[cityInfo + ', ' + stateInfo].push(comment);
-        window.localStorage.setItem('cities', JSON.stringify(cities));
-      } else {
-        cities[cityInfo + ', ' + stateInfo] = [comment];
-        window.localStorage.setItem('cities', JSON.stringify(cities));
+      var fullInfo = cityInfo + ', ' + stateInfo;
+      var cities = JSON.parse(window.localStorage.getItem('cities')) || window.localStorage.setItem('cities', JSON.stringify([{name: fullInfo, comments: [comment]}]));
+      var search = function (myArray, searchTerm, property) {
+          for(var i = 0, len = myArray.length; i < len; i++) {
+              if (myArray[i][property] === searchTerm) return i;
+          }
+          return -1;
       }
+      var result = search(cities, fullInfo, "name");
+      if(cities.length && result != -1) {
+        cities[result].comments.push(comment);
+        console.log(cities[result]);
+      } else {
+        cities.push({name: fullInfo, comments: [comment]});
+        console.log(cities);
+      }
+      window.localStorage.setItem('cities', JSON.stringify(cities));
+      console.log(cities);
     },
     getComments: function(city) {
       var cities = JSON.parse(window.localStorage.getItem('cities'));
-      return cities[city.cityId];
+      for (var i=0, l = cities.length; i < l; i++) {
+        if (cities[i].name === city.cityId) {
+          return cities[i].comments;
+        }
+      }
     }
   };
 });

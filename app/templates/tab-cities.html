@@ -7,12 +7,8 @@
       </label>
     </div>
     <ion-list>
-      <!--
-      citiesArray is created in CitiesCtrl by running Object.keys($scope.cities). $scope.cities is assigned the object of city objects returned by Cities.all(), which is defined in services.js.
-      Note that you MUST use an array in order to filter or orderBy as these WILL NOT work for objects.
-      -->
-        <ion-item class="city-list" ng-repeat="city in citiesArray | orderBy:'name' | filter:searchCity" type="item-text-wrap" href="#tab/city/{{city}}">
-          {{city}}<span class="badge badge-assertive" ng-repeat="(city, comments) in cities">{{comments.length}}</span>
+        <ion-item class="city-list" ng-repeat="city in cities | orderBy:'name' | filter:{name: searchCity}" type="item-text-wrap" href="#tab/city/{{city.name}}">
+          {{city.name}}<span class="badge badge-assertive">{{city.comments.length}}</span>
         </ion-item>
       </ion-list>
   </ion-content>
