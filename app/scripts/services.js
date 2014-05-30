@@ -14,7 +14,24 @@ angular.module('IonicWeatherApp.services', [])
     },
     save: function(cityInfo, stateInfo, comment) {
       var fullInfo = cityInfo + ', ' + stateInfo;
-      var cities = JSON.parse(window.localStorage.getItem('cities')) || [];
+      var cities = JSON.parse(window.localStorage.getItem('cities')) || window.localStorage.setItem('cities', JSON.stringify([{name: fullInfo, comments: [comment]}]));
+      var search = function (myArray, searchTerm, property) {
+          for(var i = 0, len = myArray.length; i < len; i++) {
+              if (myArray[i][property] === searchTerm) return i;
+          }
+          return -1;
+      }
+      var result = search(cities, fullInfo, "name");
+      if(cities.length && result != -1) {
+        cities[result].comments.push(comment);
+        console.log(cities[result]);
+      } else {
+        cities.push({name: fullInfo, comments: [comment]});
+        console.log(cities);
+      }
+      window.localStorage.setItem('cities', JSON.stringify(cities));
+      console.log(cities);
+
       // if (cities[cityInfo + ', ' + stateInfo] != undefined) {
       //   cities[cityInfo + ', ' + stateInfo].push(comment);
       //   window.localStorage.setItem('cities', JSON.stringify(cities));
@@ -22,18 +39,20 @@ angular.module('IonicWeatherApp.services', [])
       //   cities[cityInfo + ', ' + stateInfo] = [comment];
       //   window.localStorage.setItem('cities', JSON.stringify(cities));
       // }
-      if(!cities.length) {
-            cities.push({name: fullInfo, comments: [comment]});
-            window.localStorage.setItem('cities', JSON.stringify(cities));
-          } else{
-        for (var i=0, l = cities.length; i < l; i++) {
-          if (cities[i].name === fullInfo) {
-            cities[i].comments.push(comment);
-            window.localStorage.setItem('cities', JSON.stringify(cities));
-            // return cities[i].comments;
-          }
-        }
-      }
+
+      // for (var i=0, l = cities.length; i < l; i++) {
+      //   if (cities[i].name === fullInfo) {
+      //     console.log(cities[i].comments);
+      //     cities[i].comments.push(comment);
+      //     window.localStorage.setItem('cities', JSON.stringify(cities));
+      //     console.log("ok");
+      //   } else {
+      //     var citiesNew = JSON.parse(window.localStorage.getItem('cities')) || window.localStorage.setItem('cities', JSON.stringify([{name: fullInfo, comments: [comment]}]));
+      //     citiesNew.push({name: fullInfo, comments: [comment]});
+      //     console.log('huh?');
+      //     return window.localStorage.setItem('cities', JSON.stringify(citiesNew));
+      //   }
+      // }
     },
     getComments: function(city) {
       var cities = JSON.parse(window.localStorage.getItem('cities'));
