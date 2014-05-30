@@ -32,18 +32,24 @@ angular.module('IonicWeatherApp.services', [])
       // return JSON.stringify(cities[city.cityId]);
     },
     save: function(cityInfo, stateInfo, comment) {
-      var cities = JSON.parse(window.localStorage.getItem('cities'));
-      if (cities[cityInfo + ', ' + stateInfo] != undefined) {
-        cities[cityInfo + ', ' + stateInfo].push(comment);
-        window.localStorage.setItem('cities', JSON.stringify(cities));
-      } else {
-        cities[cityInfo + ', ' + stateInfo] = [comment];
-        window.localStorage.setItem('cities', JSON.stringify(cities));
-      }
-    },
+      var fullInfo = cityInfo + ', ' + stateInfo;
+      var cities = JSON.parse(window.localStorage.getItem('cities')) || [];
+      // if (cities[cityInfo + ', ' + stateInfo] != undefined) {
+      //   cities[cityInfo + ', ' + stateInfo].push(comment);
+      //   window.localStorage.setItem('cities', JSON.stringify(cities));
+      // } else {
+      //   cities[cityInfo + ', ' + stateInfo] = [comment];
+      //   window.localStorage.setItem('cities', JSON.stringify(cities));
+      // }
+      cities.push({name: fullInfo, comments: [comment]});
+      window.localStorage.setItem('cities', JSON.stringify(cities));    },
     getComments: function(city) {
       var cities = JSON.parse(window.localStorage.getItem('cities'));
-      return cities[city.cityId];
+      for (var i=0, l = cities.length; i < l; i++) {
+        if (cities[i].name === 'austin, tx') {
+          return cities[i].comments;
+        }
+      }
     }
   };
 });
