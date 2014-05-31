@@ -2,8 +2,18 @@
 angular.module('IonicWeatherApp.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope, $ionicLoading, $ionicModal, Cities) {
+
+  // put into services?
+  $scope.reset = function () {
+    $scope.hideCityForm = false;
+    $scope.hideCommentFunctionality = true;
+  }
+
+  // get rid of this duplication...
   $scope.hideCommentFunctionality = true;
   $scope.hideCityForm = false;
+
+
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -13,8 +23,12 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
   $scope.createComment = function(comment) {
     $scope.modal.hide();
+
+    // duplication
     $scope.hideCityForm = false;
     $scope.hideCommentFunctionality = true;
+
+
     Cities.save(this.city, this.state, comment.body);
     comment.body = "";
   };

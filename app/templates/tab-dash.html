@@ -1,8 +1,14 @@
 <ion-view title="The Weather App: Mobile">
   <ion-content class="has-header padding">
-        <button ng-hide="hideCommentFunctionality" class="button button-block button-calm" ng-click="openModal()">
-          Leave Comment for this City
-        </button>
+<!-- /////////////////////////// hidden buttons for comments  //////////////////////// -->
+    <button ng-hide="hideCommentFunctionality" class="button button-outline button-block button-calm" ng-click="openModal()">
+      Leave Comment for this City
+    </button>
+    <button ng-hide="hideCommentFunctionality" class="button button-block button-energized" ng-click="reset()">
+      Reset
+    </button>
+<!-- /////////////////////////// end hidden buttons for comments  //////////////////////// -->
+
     <div class="list list-inset">
       <form name='cityInfoForm' ng-hide='hideCityForm' ng-submit="add(cityName, stateName)" novalidate>
         <label class="main item item-input">
@@ -13,7 +19,7 @@
         </label>
         <!-- use ng-disabled to gray out button until form fields are valid to prevent
         bad data being submitted -->
-        <button ng-disabled='cityInfoForm.$invalid' class="button button-block button-positive" ng-click="clear()">
+        <button ng-disabled='cityInfoForm.$invalid' class="button button-outline button-block button-positive padding" ng-click="clear()">
           Get Weather Info
         </button>
       </form>
@@ -45,7 +51,7 @@
               </label>
             </div>
             <div class="padding">
-              <button type="submit" class="button button-block button-positive">Submit Comment</button>
+              <button type="submit" class="button button-outline button-block button-positive">Submit Comment</button>
             </div>
           </form>
 
