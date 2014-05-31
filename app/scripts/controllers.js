@@ -44,8 +44,8 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
   $scope.add = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
-    $scope.city = cityName;
-    $scope.state = stateName;
+    $scope.city = cityName.toLowerCase();
+    $scope.state = stateName.toLowerCase();
     $ionicLoading.show({
       content: 'Loading...',
       animation: 'fade-in',
