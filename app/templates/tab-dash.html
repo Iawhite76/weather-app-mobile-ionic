@@ -1,16 +1,20 @@
 <ion-view title="The Weather App: Mobile">
   <ion-content class="has-header padding">
     <div class="list list-inset">
-      <form ng-submit="add(cityName, stateName)">
+      <form name='cityInfoForm' ng-submit="add(cityName, stateName)" novalidate>
         <label class="main item item-input">
-          <input type="text" placeholder="City Name" ng-model="cityName">
+          <input type="text" placeholder="City Name" ng-model="cityName" required>
         </label>
         <label class="main item item-input">
-          <input type="text" maxlength="2" placeholder="State e.g. Tx" ng-model="stateName">
+          <input type="text" maxlength="2" placeholder="State e.g. Tx" ng-model="stateName" ng-minlength='2' required>
         </label>
-
-        <button class="button button-block button-positive" ng-click="clear()">
+        <!-- use ng-disabled to gray out button until form fields are valid to prevent
+        bad data being submitted -->
+        <button ng-disabled='cityInfoForm.$invalid' class="button button-block button-positive" ng-click="clear()">
           Get Weather Info
+        </button>
+        <button ng-hide="hide" class="button button-block button-calm" ng-click="openModal()">
+          Leave Comment
         </button>
       </form>
       </div>
@@ -21,9 +25,6 @@
         <h2>{{lowTemp}}</h2>
         <h2>{{pressure}}</h2>
         <h2>{{humidity}}</h2>
-        <button ng-hide="hide" class="button button-block button-calm" ng-click="openModal()">
-          Leave Comment
-        </button>
       </div>
       <script id="my-modal.html" type="text/ng-template">
       <div class="modal">
