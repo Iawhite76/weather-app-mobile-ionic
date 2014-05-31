@@ -16,7 +16,7 @@ angular.module('IonicWeatherApp.services', [])
       return city.cityId;
     },
     save: function(cityInfo, stateInfo, comment) {
-      var fullInfo = cityInfo + ', ' + stateInfo;
+      var fullInfo = cityInfo.toLowerCase() + ', ' + stateInfo.toLowerCase();
       var cities = JSON.parse(window.localStorage.getItem('cities')) || window.localStorage.setItem('cities', JSON.stringify([{name: fullInfo, comments: [comment]}]));
       var search = function (myArray, searchTerm, property) {
           for(var i = 0, len = myArray.length; i < len; i++) {
