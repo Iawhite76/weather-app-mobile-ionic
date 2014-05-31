@@ -2,8 +2,8 @@
 angular.module('IonicWeatherApp.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope, $ionicLoading, $ionicModal, Cities) {
-  $scope.hide = true;
-  $scope.cityComments = [];
+  $scope.hideCommentFunctionality = true;
+  $scope.hideCityForm = false;
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -13,6 +13,8 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
   $scope.createComment = function(comment) {
     $scope.modal.hide();
+    $scope.hideCityForm = false;
+    $scope.hideCommentFunctionality = true;
     Cities.save(this.city, this.state, comment.body);
     comment.body = "";
   };
@@ -57,7 +59,8 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
         dataType: "json",
         success: function (data) {
           $ionicLoading.hide();
-          $scope.hide = false;
+          $scope.hideCommentFunctionality = false;
+          $scope.hideCityForm = true;
           console.log(data.main.temp);
           $scope.$apply(function() { //necessary to $apply the changes
             $scope.cityInfo = "Weather Info For " + cityName + ', ' + stateName + ":"
