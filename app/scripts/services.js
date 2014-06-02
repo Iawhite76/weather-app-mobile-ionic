@@ -19,13 +19,15 @@ angular.module('IonicWeatherApp.services', [])
       var fullInfo = cityInfo + ', ' + stateInfo;
       var cities = JSON.parse(window.localStorage.getItem('cities')) || window.localStorage.setItem('cities', JSON.stringify([{name: fullInfo, comments: [comment]}]));
       var search = function (myArray, searchTerm, property) {
-          for(var i = 0, len = myArray.length; i < len; i++) {
-              if (myArray[i][property] === searchTerm) return i;
+        for(var i = 0, len = myArray.length; i < len; i++) {
+          if (myArray[i][property] === searchTerm) {
+            return i;
           }
-          return -1;
-      }
-      var result = search(cities, fullInfo, "name");
-      if(cities.length && result != -1) {
+        }
+        return -1;
+      };
+      var result = search(cities, fullInfo, 'name');
+      if(cities.length && result !== -1) {
         cities[result].comments.push(comment);
         console.log(cities[result]);
       } else {
