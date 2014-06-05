@@ -76,7 +76,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
           $scope.hideCommentFunctionality = false;
           $scope.hideCityForm = true;
           console.log(data.main.temp);
-          $scope.$apply(function() { //necessary to $apply the changes
+          $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
             $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
             $scope.temp = 'Temp: ' + data.main.temp + ' °F';
             $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
