@@ -78,11 +78,11 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
           console.log(data.main.temp);
           $scope.$apply(function() { //necessary to $apply the changes
             $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
-            $scope.temp = '' || 'Temp: ' + data.main.temp + ' °F';
-            $scope.highTemp = '' || 'Hi: ' + data.main.temp_max + ' °F';
-            $scope.lowTemp = '' || 'Lo: ' + data.main.temp_min + ' °F';
-            $scope.pressure = '' || 'Pressure: ' + data.main.pressure + ' hPa';
-            $scope.humidity = '' || 'Humidity: ' + data.main.humidity + ' %';
+            $scope.temp = 'Temp: ' + data.main.temp + ' °F';
+            $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
+            $scope.lowTemp = 'Lo: ' + data.main.temp_min + ' °F';
+            $scope.pressure = 'Pressure: ' + data.main.pressure + ' hPa';
+            $scope.humidity = 'Humidity: ' + data.main.humidity + ' %';
           });
         },
         error: function(xhr, status) {
