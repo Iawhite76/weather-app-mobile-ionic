@@ -4,8 +4,7 @@ angular.module('IonicWeatherApp.services', [])
   // A simple service that returns some data
 .factory('Cities', function() {
 
-  // initialize localstorage to empty object on first startup
-  if(!localStorage.length) { window.localStorage.setItem('cities', JSON.stringify({}));}
+
 
   return {
     all: function() {

@@ -11,6 +11,8 @@ angular.module('IonicWeatherApp', ['ionic', 'IonicWeatherApp.controllers', 'Ioni
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     StatusBar.styleDefault();
+    // initialize localstorage to empty object on first startup
+    if(!window.localStorage.length) { window.localStorage.setItem('cities', JSON.stringify({}));}
   });
 })
 
