@@ -57,7 +57,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     // Execute action
   });
 
-  $scope.add = function(cityName, stateName) {
+  $scope.displayCityInfo = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
     $scope.city = cityName.toLowerCase();
     $scope.state = stateName.toLowerCase();
