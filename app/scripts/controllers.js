@@ -1,7 +1,7 @@
 'use strict';
 angular.module('IonicWeatherApp.controllers', ['ionic'])
 
-.controller('DashCtrl', function($scope, $ionicLoading, $ionicModal, Cities) {
+.controller('DashCtrl', ['$scope', '$ionicLoading', '$ionicModal', 'Cities', function($scope, $ionicLoading, $ionicModal, Cities) {
 
   // put into services?
   $scope.reset = function () {
@@ -94,7 +94,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
   $scope.clear = function() {
     $('input').val('');
   };
-})
+}])
 
 .controller('CityCtrl', function($scope, Cities) {
   $scope.cities = Cities.all();
