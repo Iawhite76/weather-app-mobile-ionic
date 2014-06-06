@@ -28,7 +28,8 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     $scope.hideCityForm = false;
     $scope.hideCommentFunctionality = true;
 
-
+    // city and state variables are attached to $scope below in
+    // $scope.add. This is a bit confusing...refactor
     Cities.save(this.city, this.state, comment.body);
     comment.body = '';
   };
