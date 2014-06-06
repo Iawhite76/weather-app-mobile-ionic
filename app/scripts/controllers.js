@@ -59,8 +59,11 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
   $scope.displayCityInfo = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
+    // the two following scopes are sent to templates/tab-dash
+    // and are used in the comments modal
     $scope.city = cityName.toLowerCase();
     $scope.state = stateName.toLowerCase();
+    // dim the screen and display 'Loading' while gathering info from API
     $ionicLoading.show({
       content: 'Loading...',
       animation: 'fade-in',
@@ -68,16 +71,20 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
       maxWidth: 200,
       showDelay: 0
     });
+    // ajax call to open weather API
     $.ajax({
         url: 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ', ' + stateName + '&mode=json&units=imperial',
         type: 'get',
         dataType: 'json',
         success: function (data) {
+          // remove loading screen and return screen to normal brightness
           $ionicLoading.hide();
+          // show city info and comment button. Hide city form
           $scope.hideCommentFunctionality = false;
           $scope.hideCityForm = true;
           console.log(data.main.temp);
           $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
+            // all these variables are attached to $scope and used in templates/tab-dash
             $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
             $scope.temp = 'Temp: ' + data.main.temp + ' °F';
             $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
@@ -102,8 +109,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 })
 
 .controller('CityDetailCtrl', function($scope, $stateParams, Cities) {
-  console.log($stateParams);
-  console.log(Cities.getComments($stateParams));
+  // $stateParams contains city name/state in this case
   $scope.city = Cities.get($stateParams);
   $scope.comments = Cities.getComments($stateParams);
 });
