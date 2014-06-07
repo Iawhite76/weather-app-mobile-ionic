@@ -77,21 +77,26 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
         type: 'get',
         dataType: 'json',
         success: function (data) {
-          // remove loading screen and return screen to normal brightness
-          $ionicLoading.hide();
-          // show city info and comment button. Hide city form
-          $scope.hideCommentFunctionality = false;
-          $scope.hideCityForm = true;
-          console.log(data.main.temp);
-          $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
-            // all these variables are attached to $scope and used in templates/tab-dash
-            $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
-            $scope.temp = 'Temp: ' + data.main.temp + ' °F';
-            $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
-            $scope.lowTemp = 'Lo: ' + data.main.temp_min + ' °F';
-            $scope.pressure = 'Pressure: ' + data.main.pressure + ' hPa';
-            $scope.humidity = 'Humidity: ' + data.main.humidity + ' %';
-          });
+          if (data.cod === 200) {
+            // remove loading screen and return screen to normal brightness
+            $ionicLoading.hide();
+            // show city info and comment button. Hide city form
+            $scope.hideCommentFunctionality = false;
+            $scope.hideCityForm = true;
+            console.log(data.main.temp);
+            $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
+              // all these variables are attached to $scope and used in templates/tab-dash
+              $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
+              $scope.temp = 'Temp: ' + data.main.temp + ' °F';
+              $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
+              $scope.lowTemp = 'Lo: ' + data.main.temp_min + ' °F';
+              $scope.pressure = 'Pressure: ' + data.main.pressure + ' hPa';
+              $scope.humidity = 'Humidity: ' + data.main.humidity + ' %';
+            });
+          } else {
+            $ionicLoading.hide();
+            $scope.displayError = "Please enter valid information and try again";
+          }
         },
         error: function(xhr, status) {
           console.log('Error: ' + status);
@@ -109,7 +114,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 })
 
 .controller('CityDetailCtrl', function($scope, $stateParams, Cities) {
-  // $stateParams contains city name/state in this case
+  // $stateParams contains city name/state in this toLowerCase
   $scope.city = Cities.get($stateParams);
   $scope.comments = Cities.getComments($stateParams);
 });
