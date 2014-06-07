@@ -10,7 +10,7 @@
 <!-- /////////////////////////// end hidden buttons for comments  //////////////////////// -->
 
     <div class="list list-inset">
-      <h1 ng-show='error'>{{displayError}}</h1>
+      <div class='error' ng-show='error'>{{displayError}}</div>
       <form name='cityInfoForm' ng-hide='hideCityForm' ng-submit="displayCityInfo(cityName, stateName)" novalidate>
         <label class="main item item-input">
           <input type="text" placeholder="City Name" ng-model="cityName" required>
