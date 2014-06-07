@@ -78,6 +78,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
         dataType: 'json',
         success: function (data) {
           if (data.cod === 200) {
+            $scope.error = false;
             // remove loading screen and return screen to normal brightness
             $ionicLoading.hide();
             // show city info and comment button. Hide city form
@@ -95,6 +96,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
             });
           } else {
             $ionicLoading.hide();
+            $scope.error = true;
             $scope.displayError = "Please enter valid information and try again";
           }
         },
