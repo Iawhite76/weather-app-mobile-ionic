@@ -57,10 +57,13 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     // Execute action
   });
 
-  $scope.add = function(cityName, stateName) {
+  $scope.displayCityInfo = function(cityName, stateName) {
     console.log(cityName + ', ' + stateName);
+    // the two following scopes are sent to templates/tab-dash
+    // and are used in the comments modal
     $scope.city = cityName.toLowerCase();
     $scope.state = stateName.toLowerCase();
+    // dim the screen and display 'Loading' while gathering info from API
     $ionicLoading.show({
       content: 'Loading...',
       animation: 'fade-in',
@@ -68,23 +71,34 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
       maxWidth: 200,
       showDelay: 0
     });
+    // ajax call to open weather API
     $.ajax({
         url: 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ', ' + stateName + '&mode=json&units=imperial',
         type: 'get',
         dataType: 'json',
         success: function (data) {
-          $ionicLoading.hide();
-          $scope.hideCommentFunctionality = false;
-          $scope.hideCityForm = true;
-          console.log(data.main.temp);
-          $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
-            $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
-            $scope.temp = 'Temp: ' + data.main.temp + ' °F';
-            $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
-            $scope.lowTemp = 'Lo: ' + data.main.temp_min + ' °F';
-            $scope.pressure = 'Pressure: ' + data.main.pressure + ' hPa';
-            $scope.humidity = 'Humidity: ' + data.main.humidity + ' %';
-          });
+          if (data.cod === 200) {
+            $scope.error = false;
+            // remove loading screen and return screen to normal brightness
+            $ionicLoading.hide();
+            // show city info and comment button. Hide city form
+            $scope.hideCommentFunctionality = false;
+            $scope.hideCityForm = true;
+            console.log(data.main.temp);
+            $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
+              // all these variables are attached to $scope and used in templates/tab-dash
+              $scope.cityInfo = 'Weather Info For ' + cityName + ', ' + stateName + ':';
+              $scope.temp = 'Temp: ' + data.main.temp + ' °F';
+              $scope.highTemp = 'Hi: ' + data.main.temp_max + ' °F';
+              $scope.lowTemp = 'Lo: ' + data.main.temp_min + ' °F';
+              $scope.pressure = 'Pressure: ' + data.main.pressure + ' hPa';
+              $scope.humidity = 'Humidity: ' + data.main.humidity + ' %';
+            });
+          } else {
+            $ionicLoading.hide();
+            $scope.error = true;
+            $scope.displayError = "Please enter valid information and try again";
+          }
         },
         error: function(xhr, status) {
           console.log('Error: ' + status);
