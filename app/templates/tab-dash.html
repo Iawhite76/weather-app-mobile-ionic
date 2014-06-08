@@ -46,14 +46,14 @@
         <!-- Modal content area -->
         <ion-content>
 
-          <form ng-submit="createComment(comment)">
+          <form>
             <div class="list">
               <label class="item item-input">
                 <input type="text" maxlength="40" placeholder="Enter comment (max 40 chars)" ng-model="comment.body">
               </label>
             </div>
             <div class="padding">
-              <button type="submit" class="button button-outline button-block button-positive">Submit Comment</button>
+              <a href="#/tab/cities" class="button button-outline button-block button-positive" ng-click="createComment(comment)">Submit Comment</a>
             </div>
           </form>
 
