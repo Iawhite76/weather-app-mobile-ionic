@@ -55,3 +55,31 @@
 
 
 
+.ng-enter
+  -webkit-transition: 1.5s linear all
+  transition: 1.5s linear all
+
+  opacity: 0
+
+/* destination animations */
+.ng-enter.ng-enter-active
+  opacity: 1
+
+.ng-leave
+  -webkit-transition: 0.5s linear all
+  transition: 0.5s linear all
+
+  opacity: 1
+
+/* destination animations */
+.ng-leave.ng-leave-active
+  opacity: 0
+
+
+
+
+
+
+
+
+
