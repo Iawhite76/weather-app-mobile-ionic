@@ -116,8 +116,6 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 }])
 
 .controller('CityDetailCtrl',['$scope', '$stateParams', 'Cities', function($scope, $stateParams, Cities) {
-  console.log($stateParams);
-  console.log(Cities.getComments($stateParams));
   $scope.city = Cities.get($stateParams);
   $scope.comments = Cities.getComments($stateParams);
 }]);
