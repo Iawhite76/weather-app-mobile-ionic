@@ -1,17 +1,17 @@
 <ion-view title="The Weather App: Mobile">
   <ion-content class="has-header padding">
 <!-- /////////////////////////// hidden buttons for comments  //////////////////////// -->
-    <button ng-hide="hideCommentFunctionality" class="button button-outline button-block button-calm" ng-click="openModal()">
+    <button ng-hide="CommentFunctionality" class="button button-outline button-block button-calm" ng-click="openModal()">
       Leave Comment for this City
     </button>
-    <button ng-hide="hideCommentFunctionality" class="button button-block button-energized" ng-click="reset()">
+    <button ng-hide="CommentFunctionality" class="button button-block button-energized" ng-click="toggle()">
       Reset
     </button>
 <!-- /////////////////////////// end hidden buttons for comments  //////////////////////// -->
 
     <div class="list list-inset">
       <div class='error' ng-show='error'>{{displayError}}</div>
-      <form name='cityInfoForm' ng-hide='hideCityForm' ng-submit="displayCityInfo(cityName, stateName)" novalidate>
+      <form name='cityInfoForm' ng-show='CityForm' ng-submit="displayCityInfo(cityName, stateName)" novalidate>
         <label class="main item item-input">
           <input type="text" placeholder="City Name" ng-model="cityName" required>
         </label>
@@ -25,7 +25,7 @@
         </button>
       </form>
       </div>
-      <div id="weather-info" ng-hide="hideCommentFunctionality">
+      <div id="weather-info" ng-hide="CommentFunctionality">
         <h1>{{cityInfo.toLowerCase()}}</h1>
         <h2>{{temp}}</h2>
         <h2>{{highTemp}}</h2>

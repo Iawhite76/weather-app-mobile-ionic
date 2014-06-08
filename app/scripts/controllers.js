@@ -4,15 +4,13 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 .controller('DashCtrl', ['$scope', '$ionicLoading', '$ionicModal', 'Cities', function($scope, $ionicLoading, $ionicModal, Cities) {
 
   // put into services?
-  $scope.reset = function () {
-    $scope.hideCityForm = false;
-    $scope.hideCommentFunctionality = true;
+  $scope.toggle = function () {
+    $scope.CommentFunctionality = !$scope.CommentFunctionality;
+    $scope.CityForm = !$scope.CityForm;
   };
 
-  // get rid of this duplication...
-  $scope.hideCommentFunctionality = true;
-  $scope.hideCityForm = false;
-
+  $scope.CommentFunctionality = true;
+  $scope.CityForm = true;
 
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
@@ -24,9 +22,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
   $scope.createComment = function(comment) {
     $scope.modal.hide();
 
-    // duplication
-    $scope.hideCityForm = false;
-    $scope.hideCommentFunctionality = true;
+    $scope.toggle();
 
     // city and state variables are attached to $scope below in
     // $scope.add. This is a bit confusing...refactor
@@ -82,8 +78,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
             // remove loading screen and return screen to normal brightness
             $ionicLoading.hide();
             // show city info and comment button. Hide city form
-            $scope.hideCommentFunctionality = false;
-            $scope.hideCityForm = true;
+            $scope.toggle();
             console.log(data.main.temp);
             $scope.$apply(function() { //necessary to $apply the changes http://outbottle.com/angularjs-a-crash-course-in-processing-ajax-json/
               // all these variables are attached to $scope and used in templates/tab-dash
