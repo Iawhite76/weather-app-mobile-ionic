@@ -9,7 +9,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
     $scope.CityForm = !$scope.CityForm;
   };
 
-  $scope.CommentFunctionality = true;
+  $scope.CommentFunctionality = false;
   $scope.CityForm = true;
 
   $ionicModal.fromTemplateUrl('my-modal.html', {
