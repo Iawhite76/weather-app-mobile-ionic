@@ -97,14 +97,14 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
   };
 }])
 
-.controller('CityCtrl', function($scope, Cities) {
+.controller('CityCtrl',['$scope', 'Cities', function($scope, Cities) {
   $scope.cities = Cities.all();
-})
+}])
 
-.controller('CityDetailCtrl', function($scope, $stateParams, Cities) {
+.controller('CityDetailCtrl',['$scope', '$stateParams', 'Cities', function($scope, $stateParams, Cities) {
   console.log($stateParams);
   console.log(Cities.getComments($stateParams));
   $scope.city = Cities.get($stateParams);
   $scope.comments = Cities.getComments($stateParams);
-});
+}]);
 
