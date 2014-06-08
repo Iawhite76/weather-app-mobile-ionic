@@ -3,7 +3,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 
 .controller('DashCtrl', ['$scope', '$ionicLoading', '$ionicModal', 'Cities', function($scope, $ionicLoading, $ionicModal, Cities) {
 
-  // put into services?
+  // toggle between showing and hiding sections
   $scope.toggle = function () {
     $scope.CommentFunctionality = !$scope.CommentFunctionality;
     $scope.CityForm = !$scope.CityForm;
