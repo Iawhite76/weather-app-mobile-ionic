@@ -10,7 +10,14 @@
 <!-- /////////////////////////// end hidden buttons for comments  //////////////////////// -->
 
     <div class="list list-inset">
-      <div class='error' ng-show='error'>{{displayError}}</div>
+      <div ng-init="on=true">
+        <button ng-click="on=!on">Toggle On/Off</button>
+        <div class="my-special-animation" ng-if="on">
+          This content will enter and leave
+        </div>
+      </div>
+
+      <div class='error my-special-animation' ng-if='error'>{{displayError}}</div>
       <form name='cityInfoForm' ng-show='CityForm' ng-submit="displayCityInfo(cityName, stateName)" novalidate>
         <label class="main item item-input">
           <input type="text" placeholder="City Name" ng-model="cityName" required>

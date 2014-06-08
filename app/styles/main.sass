@@ -25,6 +25,17 @@
   padding: 20px 0 20px 0
   margin-bottom: 20px
   background-color: #FFCCCC
+/* starting animations */
+
+.my-special-animation.ng-enter
+  -webkit-transition: 3s linear all
+  transition: 3s linear all
+
+  opacity: 0
+
+/* destination animations */
+.my-special-animation.ng-enter.ng-enter-active
+  opacity: 1
 
 
 
