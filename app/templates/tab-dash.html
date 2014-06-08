@@ -10,7 +10,6 @@
 <!-- /////////////////////////// end hidden buttons for comments  //////////////////////// -->
 
     <div class="list list-inset">
-      <div class='error fade' ng-if='error'>{{displayError}}</div>
       <form name='cityInfoForm' class="fade" ng-if='CityForm' ng-submit="displayCityInfo(cityName, stateName)" novalidate>
         <label class="main item item-input">
           <input type="text" placeholder="City Name" ng-model="cityName" required>
@@ -23,6 +22,8 @@
         <button ng-disabled='cityInfoForm.$invalid' class="button button-outline button-block button-positive padding" ng-click="clear()">
           Get Weather Info
         </button>
+       <!-- error display  -->
+      <div class='error fade' ng-if='error'>{{displayError}}</div>
       </form>
       </div>
       <div id="weather-info" class="fade" ng-if="CommentFunctionality">
