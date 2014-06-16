@@ -18,13 +18,13 @@ angular.module('IonicWeatherApp.services', [])
 
       // if(!window.localStorage.length) { var cities = window.localStorage.setItem('cities', JSON.stringify({}))};
       var cities = JSON.parse(window.localStorage.getItem('cities')) || {};
-      function City(name, words) {
+      function City(name) {
         this.name = name;
-        this.comments = [words];
+        this.comments = [];
       }
-      var city = new City(fullCityInfo, comment);
+      var city = new City(fullCityInfo);
 
-      cities.hasOwnProperty(city.name) ? cities[city.name].push(city.comments) : cities[city.name] = city.comments;
+      cities.hasOwnProperty(city.name) ? cities[city.name].push(comment) : cities[city.name] = [comment];
       window.localStorage.setItem('cities', JSON.stringify(cities));
       console.log(JSON.parse(window.localStorage.getItem('cities')));
     },
