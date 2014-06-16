@@ -107,10 +107,12 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
 }])
 
 .controller('CityCtrl',['$scope', 'Cities', function($scope, Cities) {
+  // this is sent to tab-cities.html for use in angular directives
   $scope.cities = Cities.all();
 }])
 
 .controller('CityDetailCtrl',['$scope', '$stateParams', 'Cities', function($scope, $stateParams, Cities) {
+  // this is sent to tab-cities.html for use in angular directives
   $scope.city = Cities.get($stateParams);
   $scope.comments = Cities.getComments($stateParams);
 }]);

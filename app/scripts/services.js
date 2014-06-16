@@ -14,23 +14,33 @@ angular.module('IonicWeatherApp.services', [])
       return city.cityId;
     },
     save: function(cityInfo, stateInfo, comment) {
+      // concatenate city and state info e.g., 'austin', 'tx' #=> 'austin, tx'
       var fullCityInfo = cityInfo + ', ' + stateInfo;
 
-      // if(!window.localStorage.length) { var cities = window.localStorage.setItem('cities', JSON.stringify({}))};
+      // initialize variable 'cities' to localStorage.cities object or empty object
+      // if localStorage.cities is null
       var cities = JSON.parse(window.localStorage.getItem('cities')) || {};
+
+      // factory to build a new city from provided info
       function City(name) {
         this.name = name;
         this.comments = [];
       }
+
+      // build new City object
       var city = new City(fullCityInfo);
 
+      // query cities object for city entered. If found: add comment to existing
+      // comments array; if not, create city with initial comment
       cities.hasOwnProperty(city.name) ? cities[city.name].push(comment) : cities[city.name] = [comment];
+
+      // save updated cities object to locaStorage in browser/mobile device
       window.localStorage.setItem('cities', JSON.stringify(cities));
-      console.log(JSON.parse(window.localStorage.getItem('cities')));
     },
     getComments: function(city) {
       var cities = JSON.parse(window.localStorage.getItem('cities'));
-      console.log(cities[city.cityId]);
+      // 'city' is object returned from $stateParams in cityDetailCtly
+      // in controllers.js.  Access city name string with .cityId
       return cities[city.cityId];
     }
   };
