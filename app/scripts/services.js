@@ -16,37 +16,22 @@ angular.module('IonicWeatherApp.services', [])
     save: function(cityInfo, stateInfo, comment) {
       var fullCityInfo = cityInfo + ', ' + stateInfo;
 
-      // set cities variable to array of cities if they exist,
-      // or save the first city comment submitted
-      var cities = JSON.parse(window.localStorage.getItem('cities')) || window.localStorage.setItem('cities', JSON.stringify([{name: fullCityInfo, comments: [comment]}]));
-
-      var search = function (myArray, searchTerm, property) {
-        for(var i = 0, len = myArray.length; i < len; i++) {
-          if (myArray[i][property] === searchTerm) {
-            return i;
-          }
-        }
-        return -1;
-      };
-
-      var result = search(cities, fullCityInfo, 'name');
-      if(cities.length && result !== -1) {
-        cities[result].comments.push(comment);
-        console.log(cities[result]);
-      } else {
-        cities.push({name: fullCityInfo, comments: [comment]});
-        console.log(cities);
+      // if(!window.localStorage.length) { var cities = window.localStorage.setItem('cities', JSON.stringify({}))};
+      var cities = JSON.parse(window.localStorage.getItem('cities')) || {};
+      function City(name, words) {
+        this.name = name;
+        this.comments = [words];
       }
+      var city = new City(fullCityInfo, comment);
+
+      cities.hasOwnProperty(city.name) ? cities[city.name].push(city.comments) : cities[city.name] = city.comments;
       window.localStorage.setItem('cities', JSON.stringify(cities));
-      console.log(cities);
+      console.log(JSON.parse(window.localStorage.getItem('cities')));
     },
     getComments: function(city) {
       var cities = JSON.parse(window.localStorage.getItem('cities'));
-      for (var i=0, l = cities.length; i < l; i++) {
-        if (cities[i].name === city.cityId) {
-          return cities[i].comments;
-        }
-      }
+      console.log(cities[city.cityId]);
+      return cities[city.cityId];
     }
   };
 });
