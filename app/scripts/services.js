@@ -8,7 +8,14 @@ angular.module('IonicWeatherApp.services', [])
 
   return {
     all: function() {
-      return JSON.parse(window.localStorage.getItem('cities'));
+      // convert cities object to an associative array and ng-repeat filters
+      // only work on arrays
+      var cities = JSON.parse(window.localStorage.getItem('cities'));
+      var citiesArray = [];
+      for (var key in cities) {
+        citiesArray.push({name: key, comments: cities[key]});
+      }
+      return citiesArray;
     },
     get: function(city) {
       return city.cityId;
