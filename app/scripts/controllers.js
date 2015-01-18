@@ -92,7 +92,7 @@ angular.module('IonicWeatherApp.controllers', ['ionic'])
           } else {
             $ionicLoading.hide();
             $scope.error = true;
-            $scope.displayError = "Please enter valid information and try again";
+            $scope.displayError = 'Please enter valid information and try again';
           }
         },
         error: function(xhr, status) {

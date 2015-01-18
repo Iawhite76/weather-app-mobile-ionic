@@ -8,8 +8,8 @@ angular.module('IonicWeatherApp.services', [])
 
   return {
     all: function() {
-      // convert cities object to an associative array and ng-repeat filters
-      // only work on arrays
+      // convert cities object to an associative array.
+      // ng-repeat filters only work on arrays
       var cities = JSON.parse(window.localStorage.getItem('cities'));
       var citiesArray = [];
       for (var key in cities) {
@@ -29,9 +29,12 @@ angular.module('IonicWeatherApp.services', [])
       var cities = JSON.parse(window.localStorage.getItem('cities')) || {};
 
       // query cities object for city entered. If found: add comment to existing
-      // comments array; if not, create city with initial comment
-      cities.hasOwnProperty(cityAndState) ? cities[cityAndState].push(comment) : cities[cityAndState] = [comment];
-
+      // comments array; if not, create city array with initial comment
+      if (cities.hasOwnProperty(cityAndState)) {
+        cities[cityAndState].push(comment);
+      } else {
+        cities[cityAndState] = [comment];
+      }
       // save updated cities object to locaStorage in browser/mobile device
       window.localStorage.setItem('cities', JSON.stringify(cities));
     },
